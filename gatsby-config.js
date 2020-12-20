@@ -6,5 +6,15 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: [],
+  plugins: [
+    "gatsby-plugin-styled-components",
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Roboto:400,Roboto:600"],
+        },
+      },
+    },
+  ],
 }
