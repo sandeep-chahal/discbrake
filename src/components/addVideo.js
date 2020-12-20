@@ -28,9 +28,45 @@ const Plus = styled.div`
   position: absolute;
 `
 
-const AddVideo = () => {
+const AddVideo = ({ handleImportVideos }) => {
+  const handleFileOpen = () => {
+    if ("showOpenFilePicker" in window) {
+      window
+        .showOpenFilePicker({
+          multiple: true,
+          types: [
+            {
+              description: "Videos",
+              accept: {
+                "video/*": [
+                  ".mp4",
+                  ".avi",
+                  ".mov",
+                  ".mkv",
+                  ".webm",
+                  ".flv",
+                  ".3gp",
+                  ".wmv",
+                  ".flv",
+                ],
+              },
+            },
+          ],
+        })
+        .then(async res => {
+          const proms = res.map(file => file.getFile())
+          let files = await Promise.all(proms)
+          files = files.filter(file => file.type.includes("video/"))
+          handleImportVideos(files)
+          console.log(files)
+        })
+        .catch(err => {
+          console.warn(err)
+        })
+    } else alert("Not Supported")
+  }
   return (
-    <Wrapper>
+    <Wrapper onClick={handleFileOpen}>
       <Plus width="80%" height="10px" />
       <Plus height="80%" width="10px" />
     </Wrapper>

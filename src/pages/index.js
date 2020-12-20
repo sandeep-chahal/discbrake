@@ -8,12 +8,18 @@ import Tabs from "../components/tabs"
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("video")
+  const [videos, addVideos] = useState(null)
+
+  const handleImportVideos = files => {
+    addVideos(prev => [...(prev || []), ...files])
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <h1>DiscBrake</h1>
       <VideosWrapper>
-        <AddVideo />
+        <AddVideo handleImportVideos={handleImportVideos} />
       </VideosWrapper>
       <SettingsWrapper>
         <Tabs
