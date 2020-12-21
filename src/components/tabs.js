@@ -13,7 +13,7 @@ const TabWrapper = styled.div`
 const Tab = styled.div`
   transition: opacity 0.1s ease;
   opacity: ${({ active }) => !active && 0.7};
-  margin: 0 20px;
+  margin: 0 20px 0 0;
   cursor: pointer;
 `
 const Button = styled.button`
@@ -22,7 +22,6 @@ const Button = styled.button`
   padding: 10px 15px;
   color: ${({ theme }) => theme.colors.background2};
   background: ${({ theme }) => theme.colors.text};
-  box-shadow: 0 10px 10px ${({ theme }) => theme.colors.shadow};
   margin-left: auto;
   border: none;
   outline: none;

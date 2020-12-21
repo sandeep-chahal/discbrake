@@ -1,0 +1,59 @@
+.video-settings {
+  padding: 20px 40px;
+}
+.group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.label {
+  margin-right: 10px;
+  font-size: 17px;
+}
+
+.slider {
+  width: 400px;
+  height: 20px;
+  background: #1e1e1e;
+  border-radius: 20px;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+.thumb {
+  font-size: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+}
+
+.thumb:active {
+  cursor: grabbing;
+}
+/* .resolution {
+  display: flex;
+  align-items: center;
+}
+.resolution * {
+  margin: 0px 10px;
+} */
+
+.res {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.res input {
+  margin-right: 20px;
+}
+
+.res label {
+  margin-right: 20px;
+}

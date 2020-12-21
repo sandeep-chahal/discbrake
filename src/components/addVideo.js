@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { useStore, importVideos } from "../context"
 
 const Wrapper = styled.div.attrs(() => ({ title: "Click to import videos" }))`
   width: 80px;
@@ -28,7 +29,9 @@ const Plus = styled.div`
   position: absolute;
 `
 
-const AddVideo = ({ handleImportVideos }) => {
+const AddVideo = () => {
+  const [state, dispatch] = useStore()
+
   const handleFileOpen = () => {
     if ("showOpenFilePicker" in window) {
       window
@@ -57,7 +60,7 @@ const AddVideo = ({ handleImportVideos }) => {
           const proms = res.map(file => file.getFile())
           let files = await Promise.all(proms)
           files = files.filter(file => file.type.includes("video/"))
-          handleImportVideos(files)
+          dispatch(importVideos(files))
           console.log(files)
         })
         .catch(err => {
