@@ -27,17 +27,17 @@ export default function Home() {
   const [state, dispatch] = useStore()
 
   const handleCompress = async () => {
-    if (!ffmpeg.isLoaded()) {
-      await ffmpeg.load()
-      ffmpeg.setProgress(prog => {
-        dispatch(alterProgress(prog.ratio))
-      })
-      ffmpeg.setLogger(log => {
-        dispatch(addLog(log.message))
-      })
-    }
-
     try {
+      if (!ffmpeg.isLoaded()) {
+        await ffmpeg.load()
+        ffmpeg.setProgress(prog => {
+          dispatch(alterProgress(prog.ratio))
+        })
+        ffmpeg.setLogger(log => {
+          dispatch(addLog(log.message))
+        })
+      }
+
       if (!ffmpeg.isLoaded()) return alert("ffmpeg not loaded yet")
       dispatch(changeTab("output"))
       const format = state.videoSettings.format
