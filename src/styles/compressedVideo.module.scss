@@ -1,6 +1,9 @@
 .compressed-video {
   display: flex;
   margin-right: 5rem;
+  h3 {
+    font-weight: 400;
+  }
   * {
     margin: 0 0.5rem;
   }
@@ -11,6 +14,17 @@
     &:active {
       transform: translateY(5px);
     }
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-right: 0;
+    .controls {
+      margin-top: 0.5rem;
+    }
+  }
+  .controls {
+    display: flex;
+    align-items: center;
   }
 }
 // .compressed-video {

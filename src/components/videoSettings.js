@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "../styles/videoSettings.module.css"
+import styles from "../styles/videoSettings.module.scss"
 import Select from "./select"
 import Slider from "react-slider"
 import { useStore, videoSettings } from "../context"
@@ -69,7 +69,7 @@ const VideoSettings = () => {
         />
       </div>
       <div className={styles.group}>
-        <div>Frame Rate:</div>
+        <label className={styles.label}>Frame Rate:</label>
 
         <Slider
           defaultValue={state.videoSettings.frameRate}
@@ -118,7 +118,7 @@ const VideoSettings = () => {
         />
       </div>
       <div className={styles.group}>
-        <div>CRF:</div>
+        <label className={styles.label}>CRF:</label>
 
         <Slider
           defaultValue={state.videoSettings.crf}
@@ -135,92 +135,93 @@ const VideoSettings = () => {
           )}
         />
       </div>
-      {/* <div className={styles.group}>
-        <div className={styles.label}>Tune:</div>
-        <Select
-          selected={state.videoSettings.tune}
-          onChange={handleTuneChange}
-          options={[
-            "none",
-            "film",
-            "animation",
-            "grain",
-            "stillimage",
-            "fastdecode",
-            "zerolatency",
-          ]}
-        />
-      </div> */}
+      {/* resolution */}
       <form className={styles.res}>
         <div className={styles.label}>Resolution:</div>
-        <input
-          checked={!state.videoSettings.resolution.on}
-          id="original"
-          type="radio"
-          name="res"
-          onChange={() => handleResOnOff(false)}
-        />
-        <label htmlFor="original">Original</label>
-        <input
-          checked={state.videoSettings.resolution.on}
-          onChange={() => handleResOnOff(true)}
-          type="radio"
-          name="res"
-          value="wxh"
-        />
-        <input
-          type="text"
-          name="res"
-          placeholder="Width"
-          value={state.videoSettings.resolution.width}
-          onChange={e => handleResChange({ width: e.target.value })}
-        />
+        <div>
+          <input
+            checked={!state.videoSettings.resolution.on}
+            id="original"
+            type="radio"
+            name="res"
+            onChange={() => handleResOnOff(false)}
+          />
+          <label htmlFor="original">Original</label>
+        </div>
+        <div className={styles.custom}>
+          <input
+            checked={state.videoSettings.resolution.on}
+            onChange={() => handleResOnOff(true)}
+            type="radio"
+            name="res"
+            value="wxh"
+            id="custom1"
+          />
+          <label htmlFor="custom1">Custom</label>
+          <div>
+            <input
+              type="text"
+              name="res"
+              placeholder="Width"
+              value={state.videoSettings.resolution.width}
+              onChange={e => handleResChange({ width: e.target.value })}
+            />
 
-        <input
-          type="text"
-          name="res"
-          placeholder="Height"
-          value={state.videoSettings.resolution.height}
-          onChange={e => handleResChange({ height: e.target.value })}
-        />
+            <input
+              type="text"
+              name="res"
+              placeholder="Height"
+              value={state.videoSettings.resolution.height}
+              onChange={e => handleResChange({ height: e.target.value })}
+            />
+          </div>
+        </div>
       </form>
 
       {/* aspect ratio */}
       <form className={styles.res}>
         <div className={styles.label}>Aspect Ratio:</div>
-        <input
-          checked={!state.videoSettings.ar.on}
-          id="original1"
-          type="radio"
-          name="ar"
-          onChange={() => handleAROnOff(false)}
-        />
-        <label htmlFor="original1">Original</label>
-        <input
-          checked={state.videoSettings.ar.on}
-          onChange={() => handleAROnOff(true)}
-          type="radio"
-          name="ar"
-        />
-        <input
-          type="text"
-          name="ar"
-          placeholder="W"
-          value={state.videoSettings.ar.w}
-          onChange={e => handleARChange({ w: e.target.value })}
-        />
+        <div>
+          <input
+            checked={!state.videoSettings.ar.on}
+            id="original1"
+            type="radio"
+            name="ar"
+            onChange={() => handleAROnOff(false)}
+          />
+          <label htmlFor="original1">Original</label>
+        </div>
+        <div className={styles.custom}>
+          <input
+            checked={state.videoSettings.ar.on}
+            onChange={() => handleAROnOff(true)}
+            type="radio"
+            name="ar"
+            id="custom2"
+          />
+          <label htmlFor="custom2">Custom</label>
+          <div>
+            <input
+              type="text"
+              name="ar"
+              placeholder="W"
+              value={state.videoSettings.ar.w}
+              onChange={e => handleARChange({ w: e.target.value })}
+            />
 
-        <input
-          id="wxh"
-          type="text"
-          name="ar"
-          placeholder="HeHight"
-          value={state.videoSettings.ar.h}
-          onChange={e => handleARChange({ h: e.target.value })}
-        />
+            <input
+              id="wxh"
+              type="text"
+              name="ar"
+              placeholder="HeHight"
+              value={state.videoSettings.ar.h}
+              onChange={e => handleARChange({ h: e.target.value })}
+            />
+          </div>
+        </div>
       </form>
       <div className={styles.group}>
-        <div>Speed:</div>
+        <label className={styles.label}>Speed:</label>
 
         <Slider
           defaultValue={state.videoSettings.speed}

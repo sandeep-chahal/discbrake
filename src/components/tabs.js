@@ -1,40 +1,5 @@
 import React from "react"
-import styled from "styled-components"
-
-const TabWrapper = styled.div`
-  width: 100%;
-  height: 60px;
-  background: ${({ theme }) => theme.colors.background3};
-  border-radius: 10px 10px 0 0;
-  display: flex;
-  align-items: center;
-  padding: 0 40px;
-`
-const Tab = styled.div`
-  transition: opacity 0.1s ease;
-  opacity: ${({ active }) => !active && 0.7};
-  margin: 0 20px 0 0;
-  cursor: pointer;
-`
-const Button = styled.button`
-  cursor: pointer;
-  font-weight: bold;
-  padding: 10px 15px;
-  color: ${({ theme }) => theme.colors.background2};
-  background: ${({ theme }) => theme.colors.text};
-  margin-left: auto;
-  border: none;
-  outline: none;
-
-  &::focus {
-    outline: 1px solid ${({ theme }) => theme.colors.text};
-  }
-
-  transition: transform 0.2s ease;
-  &:active {
-    transform: translateY(5px);
-  }
-`
+import styles from "../styles/tabs.module.scss"
 
 const Tabs = ({
   tabs = [],
@@ -45,22 +10,27 @@ const Tabs = ({
   disable = false,
 }) => {
   return (
-    <TabWrapper>
+    <div className={styles.tabWrapper}>
       {tabs.map((tab, i) => (
-        <Tab
+        <div
+          className={styles.tab}
           key={i}
           onClick={() => !disable && onTabChange(tab.toLowerCase())}
-          active={active === tab.toLowerCase()}
+          style={{ opacity: active === tab.toLowerCase() ? 1 : 0.7 }}
         >
           {tab}
-        </Tab>
+        </div>
       ))}
       {primaryButton && (
-        <Button disabled={disable} onClick={onButtonClick}>
+        <button
+          className={styles.btn}
+          disabled={disable}
+          onClick={onButtonClick}
+        >
           {primaryButton}
-        </Button>
+        </button>
       )}
-    </TabWrapper>
+    </div>
   )
 }
 

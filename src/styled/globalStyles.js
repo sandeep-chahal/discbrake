@@ -16,6 +16,9 @@ const GlobalStyles = createGlobalStyle`
         -moz-osx-font-smoothing: grayscale;
         overflow: hidden;
         padding: 10px 40px;
+        @media (max-width:768px){
+            padding: 10px;
+        }
         background:${({ theme }) => theme.colors.background1};
         color:${({ theme }) => theme.colors.text};
     }

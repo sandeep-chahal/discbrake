@@ -1,0 +1,85 @@
+.video-settings {
+  padding: 20px 40px;
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+  .group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  .label {
+    margin-right: 10px;
+    font-size: 17px;
+    @media (max-width: 768px) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .track {
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  .custom {
+    display: flex;
+    align-items: center;
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  .slider {
+    width: 400px;
+    height: 20px;
+    background: #1e1e1e;
+    border-radius: 20px;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    @media (max-width: 768px) {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+  .thumb {
+    font-size: 12px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+  }
+
+  .thumb:active {
+    cursor: grabbing;
+  }
+
+  .res {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  .res input {
+    margin-right: 15px;
+  }
+
+  .res label {
+    margin-right: 30px;
+    margin-left: 0;
+  }
+}

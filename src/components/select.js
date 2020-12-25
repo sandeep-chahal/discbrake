@@ -1,22 +1,7 @@
-import React, { useState, useEffect } from "react"
-import styles from "../styles/select.module.css"
+import React from "react"
+import styles from "../styles/select.module.scss"
 
 const Select = ({ selected, options, onChange }) => {
-  const [expanded, setExpanded] = useState(false)
-  const handleExpanded = () => {
-    setExpanded(prev => {
-      if (!prev) {
-        document.addEventListener(
-          "click",
-          () => {
-            setExpanded(false)
-          },
-          { once: true }
-        )
-      }
-      return !prev
-    })
-  }
   return (
     <>
       <select className={styles.select} id="select">
