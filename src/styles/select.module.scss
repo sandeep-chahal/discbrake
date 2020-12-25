@@ -2,55 +2,53 @@
   position: relative;
   padding: 5px 10px;
   text-transform: capitalize;
+}
+.button {
+  cursor: pointer;
+  padding: 5px;
+}
+.button,
+.menu {
+  width: 100px;
+  font-weight: 400;
+  font-size: 17px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background: #fff;
+}
 
-  .button {
-    cursor: pointer;
-    padding: 5px;
-  }
-  .button,
-  .menu {
-    width: 100px;
-    font-weight: 400;
-    font-size: 17px;
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    background: #fff;
-  }
+.menu {
+  margin-top: 5px;
+  color: #000;
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  list-style: none;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.2s linear;
+  overflow-y: auto;
+  max-height: 200px;
+}
 
-  .menu {
-    margin-top: 5px;
-    color: #000;
-    position: absolute;
-    z-index: 100;
-    /* top: 100%; */
-    left: 0;
-    list-style: none;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
-    animation: fadeIn 0.2s linear;
-    overflow-y: auto;
-    max-height: 200px;
-  }
+.radio-wrapper,
+form {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  flex-wrap: wrap;
+}
+label {
+  margin-left: 10px;
+}
 
-  .radio-wrapper,
-  form {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-    flex-wrap: wrap;
-  }
-  label {
-    margin-left: 10px;
-  }
-
-  .item {
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 5px;
-  }
-  .item:hover {
-    background: rgba(243, 243, 243, 0.5);
-  }
+.item {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+}
+.item:hover {
+  background: rgba(243, 243, 243, 0.5);
 }
 @keyframes fadeIn {
   from {

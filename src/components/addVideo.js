@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 import { useStore, importVideos } from "../context"
 
@@ -31,9 +31,10 @@ const Plus = styled.div`
 
 const AddVideo = () => {
   const [state, dispatch] = useStore()
+  const input = useRef(null)
 
   const handleFileOpen = () => {
-    if ("showOpenFilePicker" in window) {
+    if (false) {
       window
         .showOpenFilePicker({
           multiple: true,
@@ -66,12 +67,25 @@ const AddVideo = () => {
         .catch(err => {
           console.warn(err)
         })
-    } else alert("Not Supported")
+    } else {
+      input.current.click()
+    }
+  }
+  const handleFileChoose = e => {
+    dispatch(importVideos(e.target.files))
   }
   return (
     <Wrapper onClick={handleFileOpen}>
       <Plus width="80%" height="10px" />
       <Plus height="80%" width="10px" />
+      <input
+        type="file"
+        hidden
+        accept="video/*"
+        multiple
+        ref={input}
+        onChange={handleFileChoose}
+      />
     </Wrapper>
   )
 }
