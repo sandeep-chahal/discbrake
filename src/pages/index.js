@@ -17,6 +17,7 @@ import {
 import { toFFMPEGCmd } from "../utils"
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg"
 import Output from "../components/output"
+import Preview from "../components/preview"
 
 const ffmpeg = createFFmpeg({
   log: true,
@@ -54,7 +55,7 @@ export default function Home() {
         ffmpeg.FS("unlink", `output.${format}`)
         dispatch(
           addCompressedVideo({
-            name: video.name.split(".").pop().join(".") + "." + format,
+            name: video.name.split(".").slice(0, -1).join(".") + "." + format,
             blob,
           })
         )
@@ -87,6 +88,7 @@ export default function Home() {
           {state.activeTab === "output" && <Output />}
         </div>
       </SettingsWrapper>
+      {state.preview ? <Preview /> : null}
     </ThemeProvider>
   )
 }

@@ -1,0 +1,26 @@
+.compressed-video {
+  display: flex;
+  margin-right: 5rem;
+  * {
+    margin: 0 0.5rem;
+  }
+
+  img {
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+    &:active {
+      transform: translateY(5px);
+    }
+  }
+}
+// .compressed-video {
+//   width: 80px;
+//   height: 80px;
+//   margin-right: 20px;
+//   cursor: pointer;
+//   margin: 1.5rem;
+
+//   video {
+//     object-fit: cover;
+//   }
+// }

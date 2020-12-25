@@ -1,38 +1,53 @@
 import React from "react"
-import styled from "styled-components"
 import { handleDownload } from "../utils"
+import styles from "../styles/compressedVideo.module.scss"
 
-const Wrapper = styled.div`
-  width: 80px;
-  height: 80px;
-  margin-right: 20px;
-  outline: 2px solid ${({ theme }) => theme.colors.text};
-  cursor: pointer;
-`
-const VideoBox = ({ blob, name }) => {
-  const url = URL.createObjectURL(blob)
+const VideoBox = ({ blob, name, handlePlayPreview }) => {
   return (
-    <Wrapper>
-      <div className="video-wrapper">
-        <video
-          title="Click to download"
-          controls={false}
-          width="80px"
-          height="80px"
-          style={{ objectFit: "cover" }}
-        >
-          <source src={url} />
-        </video>
-      </div>
-      <p>{name.slice(0, 20)}...</p>
-      <div className={styles.download}>
-        <a download={name} href={url}>
-          Save
+    <div className={styles.compressedVideo} title={name}>
+      <h3>{name}</h3>
+      <div className={styles.controls}>
+        <img
+          onClick={() => handlePlayPreview({ name, blob })}
+          src="/icons/icons8-play.svg"
+          width="25px"
+          height="25px"
+        />
+        <a href={URL.createObjectURL(blob)} download={name}>
+          <img
+            title="download"
+            src="/icons/icons8-download.svg"
+            width="20px"
+            height="20px"
+          />
         </a>
-        <span onClick={() => handleDownload(name, blob)}>Save as</span>
+        <img
+          onClick={() => handleDownload(name, blob)}
+          title="Save as"
+          src="/icons/icons8-save.svg"
+          width="20px"
+          height="20px"
+        />
       </div>
-    </Wrapper>
+    </div>
   )
 }
 
 export default VideoBox
+
+// return (
+//   <div className={styles.compressedVideo} title={name}>
+//     <div className={styles.videoWrapper}>
+//       <video controls={false} width="80px" height="80px">
+//         <source src={url} />
+//       </video>
+//     </div>
+//     <p>{name.slice(0, 20)}...</p>
+//     <div>
+//       <a download={name} href={url}>
+//         Save
+//       </a>
+//       <span onClick={() => handleDownload(name, blob)}>Save as</span>
+//     </div>
+//   </div>
+// )

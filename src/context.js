@@ -84,6 +84,14 @@ export const addLog = log => {
     },
   }
 }
+export const playPreview = preview => {
+  return {
+    type: "PLAY_PREVIEW",
+    payload: {
+      preview,
+    },
+  }
+}
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -130,6 +138,11 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         progress: action.payload.progress,
+      }
+    case "PLAY_PREVIEW":
+      return {
+        ...state,
+        preview: action.payload.preview,
       }
     default:
       return state

@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 `
 const VideoBox = ({ video }) => {
   return (
-    <Wrapper>
+    <Wrapper title={video.name}>
       <video
         controls={false}
         width="80px"
