@@ -17,7 +17,7 @@ const Output = () => {
             className={styles.bar}
           ></div>
           <span className={styles.progress}>
-            {(state.progress || 0).toFixed(4) * 100}%
+            {((state.progress > 0 && state.progress) || 0).toFixed(4) * 100}%
           </span>
         </div>
         {/* <div className={styles.logWrapper}>

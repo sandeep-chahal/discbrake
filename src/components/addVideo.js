@@ -34,7 +34,7 @@ const AddVideo = () => {
   const input = useRef(null)
 
   const handleFileOpen = () => {
-    if (false) {
+    if ("showOpenFilePicker" in window) {
       window
         .showOpenFilePicker({
           multiple: true,
