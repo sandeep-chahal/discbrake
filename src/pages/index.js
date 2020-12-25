@@ -26,8 +26,6 @@ const ffmpeg = createFFmpeg({
 export default function Home() {
   const [state, dispatch] = useStore()
 
-  useEffect(() => {}, [])
-
   const handleCompress = async () => {
     if (!ffmpeg.isLoaded()) {
       await ffmpeg.load()
