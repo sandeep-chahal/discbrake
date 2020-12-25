@@ -55,7 +55,11 @@ const Tabs = ({
           {tab}
         </Tab>
       ))}
-      {primaryButton && <Button disabled={disable}>{primaryButton}</Button>}
+      {primaryButton && (
+        <Button disabled={disable} onClick={onButtonClick}>
+          {primaryButton}
+        </Button>
+      )}
     </TabWrapper>
   )
 }

@@ -14,10 +14,26 @@ const GlobalStyles = createGlobalStyle`
             "Helvetica Neue", sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        overflow-x: hidden;
+        overflow: hidden;
         padding: 10px 40px;
         background:${({ theme }) => theme.colors.background1};
         color:${({ theme }) => theme.colors.text};
+    }
+    .settings{
+        height: 62vh;
+        overflow-y: auto;
+    }
+
+    .settings::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    .settings::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    .settings::-webkit-scrollbar-thumb {
+        background-color: #ccc;
     }
 `
 export default GlobalStyles

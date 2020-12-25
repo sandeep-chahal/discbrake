@@ -4,9 +4,9 @@ const INITIAL_STATE = {
   videos: null,
   activeTab: "video",
   videoSettings: {
-    codec: "H.264",
+    codec: "default",
     frameRate: 30,
-    format: "MP4",
+    format: "mp4",
     preset: "medium",
     crf: 23,
     tune: "none",
@@ -23,6 +23,9 @@ const INITIAL_STATE = {
     },
   },
   audioSettings: {},
+  compressedVideos: null,
+  progress: null,
+  log: null,
 }
 
 export const importVideos = videos => {
@@ -57,6 +60,30 @@ export const audioSettings = settings => {
     },
   }
 }
+export const addCompressedVideo = video => {
+  return {
+    type: "COMPRESSED_VIDEO",
+    payload: {
+      video,
+    },
+  }
+}
+export const alterProgress = progress => {
+  return {
+    type: "ALTER_PROGRESS",
+    payload: {
+      progress,
+    },
+  }
+}
+export const addLog = log => {
+  return {
+    type: "ADD_LOG",
+    payload: {
+      log,
+    },
+  }
+}
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -85,6 +112,24 @@ const reducer = (state = INITIAL_STATE, action) => {
           ...state.audioSettings,
           ...action.payload.settings,
         },
+      }
+    case "COMPRESSED_VIDEO":
+      return {
+        ...state,
+        compressedVideos: [
+          ...(state.compressedVideos || []),
+          action.payload.video,
+        ],
+      }
+    case "ADD_LOG":
+      return {
+        ...state,
+        log: action.payload.log,
+      }
+    case "ALTER_PROGRESS":
+      return {
+        ...state,
+        progress: action.payload.progress,
       }
     default:
       return state

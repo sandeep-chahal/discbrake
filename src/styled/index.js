@@ -12,7 +12,6 @@ export const VideosWrapper = styled.div`
   align-items: center;
 `
 export const SettingsWrapper = styled.div`
-  height: 70vh;
   width: 100%;
   background: ${({ theme }) => theme.colors.background2};
   margin-top: 20px;

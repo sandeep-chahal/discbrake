@@ -51,9 +51,10 @@
   margin-bottom: 25px;
 }
 .res input {
-  margin-right: 20px;
+  margin-right: 15px;
 }
 
 .res label {
-  margin-right: 20px;
+  margin-right: 30px;
+  margin-left: 0;
 }

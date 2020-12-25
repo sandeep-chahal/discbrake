@@ -65,7 +65,7 @@ const VideoSettings = () => {
         <Select
           selected={state.videoSettings.codec}
           onChange={handleCodecChange}
-          options={["H.264", "libvpx"]}
+          options={["default", "libx264", "libvpx", "vp9", "vp8"]}
         />
       </div>
       <div className={styles.group}>
@@ -95,7 +95,7 @@ const VideoSettings = () => {
         <Select
           selected={state.videoSettings.format}
           onChange={handleFormatChange}
-          options={["MP4", "Avi", "MKV", "Webm"]}
+          options={["mp4", "avi", "mkv", "webm"]}
         />
       </div>
       <div className={styles.group}>
@@ -135,7 +135,7 @@ const VideoSettings = () => {
           )}
         />
       </div>
-      <div className={styles.group}>
+      {/* <div className={styles.group}>
         <div className={styles.label}>Tune:</div>
         <Select
           selected={state.videoSettings.tune}
@@ -150,7 +150,7 @@ const VideoSettings = () => {
             "zerolatency",
           ]}
         />
-      </div>
+      </div> */}
       <form className={styles.res}>
         <div className={styles.label}>Resolution:</div>
         <input
@@ -164,13 +164,11 @@ const VideoSettings = () => {
         <input
           checked={state.videoSettings.resolution.on}
           onChange={() => handleResOnOff(true)}
-          id="wxh"
           type="radio"
           name="res"
           value="wxh"
         />
         <input
-          id="wxh"
           type="text"
           name="res"
           placeholder="Width"
@@ -179,7 +177,6 @@ const VideoSettings = () => {
         />
 
         <input
-          id="wxh"
           type="text"
           name="res"
           placeholder="Height"
@@ -227,7 +224,7 @@ const VideoSettings = () => {
 
         <Slider
           defaultValue={state.videoSettings.speed}
-          min={0}
+          min={0.1}
           max={2}
           onAfterChange={handleSpeedChange}
           className={styles.slider}
