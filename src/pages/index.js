@@ -21,6 +21,7 @@ import { convertAudioSettings, convertVideoSettings } from "../utils"
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg"
 import Output from "../components/output"
 import Preview from "../components/preview"
+import { Helmet } from "react-helmet"
 
 const ffmpeg = createFFmpeg({
   log: true,
@@ -79,6 +80,26 @@ export default function Home() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>DiscBrake</title>
+        <meta
+          name="description"
+          content="Video encoding right in the browser."
+        />
+        <meta
+          name="tags"
+          content="compress video, encode video, discbrake, ffmpeg, ffmpeg in browser"
+        />
+        <link rel="canonical" href="http://discbrake.vercel.app/" />
+        <meta property="og:title" content="DiscBrake" />
+        <meta property="og:site_name" content="DiscBrake" />
+        <meta property="og:url" content="http://discbrake.vercel.app/" />
+        <meta
+          property="og:description"
+          content="Video encoding right in the browser."
+        />
+      </Helmet>
       <GlobalStyles />
       <h1>DiscBrake</h1>
       <VideosWrapper>
