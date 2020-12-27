@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import styled from "styled-components"
 import { useStore, importVideos } from "../context"
+import { uuidv4 } from "../utils"
 
 const Wrapper = styled.div.attrs(() => ({ title: "Click to import videos" }))`
   width: 80px;
@@ -34,6 +35,17 @@ const AddVideo = () => {
   const [state, dispatch] = useStore()
   const input = useRef(null)
 
+  const filterFiles = files => {
+    const videos = files
+      .filter(file => file.type.includes("video/"))
+      .map(video => {
+        video.key = uuidv4()
+        return video
+      })
+    console.log(videos)
+    return videos
+  }
+
   const handleFileOpen = () => {
     if ("showOpenFilePicker" in window) {
       window
@@ -61,7 +73,7 @@ const AddVideo = () => {
         .then(async res => {
           const proms = res.map(file => file.getFile())
           let files = await Promise.all(proms)
-          files = files.filter(file => file.type.includes("video/"))
+          files = filterFiles(files)
           dispatch(importVideos(files))
           console.log(files)
         })
@@ -73,7 +85,7 @@ const AddVideo = () => {
     }
   }
   const handleFileChoose = e => {
-    dispatch(importVideos(e.target.files))
+    dispatch(importVideos(filterFiles(e.target.files)))
   }
   return (
     <Wrapper onClick={handleFileOpen}>

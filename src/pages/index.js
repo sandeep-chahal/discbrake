@@ -17,7 +17,7 @@ import {
   playPreview,
   deleteImported,
 } from "../context"
-import { convertAudioSettings, convertVideoSettings } from "../utils"
+import { convertAudioSettings, convertVideoSettings, uuidv4 } from "../utils"
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg"
 import Output from "../components/output"
 import Preview from "../components/preview"
@@ -61,6 +61,7 @@ export default function Home() {
             addCompressedVideo({
               name: video.name.split(".").slice(0, -1).join(".") + "." + format,
               blob,
+              key: uuidv4(),
             })
           )
       }
@@ -106,7 +107,7 @@ export default function Home() {
         {state.videos &&
           state.videos.map((video, i) => (
             <VideoBox
-              key={i + video.name}
+              key={video.key}
               video={video}
               handlePlay={() => handlePlay(video.name, video)}
               handleDelete={() => handleDelete(i)}

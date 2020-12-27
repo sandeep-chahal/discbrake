@@ -34,7 +34,7 @@ const Output = () => {
           {state.compressedVideos &&
             state.compressedVideos.map((video, i) => (
               <CompressedVideo
-                key={i}
+                key={video.key}
                 name={video.name}
                 blob={video.blob}
                 handlePlayPreview={handlePlayPreview}
