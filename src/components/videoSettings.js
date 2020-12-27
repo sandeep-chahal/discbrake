@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "../styles/videoSettings.module.scss"
+import styles from "../styles/settings.module.scss"
 import Select from "./select"
 import Slider from "react-slider"
 import { useStore, videoSettings } from "../context"
@@ -57,9 +57,19 @@ const VideoSettings = () => {
       })
     )
   }
+  const handleBitrateChange = bitrate => {
+    dispatch(
+      videoSettings({
+        bitrate: {
+          ...state.videoSettings.bitrate,
+          ...bitrate,
+        },
+      })
+    )
+  }
 
   return (
-    <div className={styles.videoSettings}>
+    <div className={styles.settings}>
       <div className={styles.group}>
         <div className={styles.label}>Codec:</div>
         <Select
@@ -239,6 +249,79 @@ const VideoSettings = () => {
           )}
         />
       </div>
+      <form className={styles.group}>
+        <div className={styles.label}>Bitrate:</div>
+        <div>
+          <input
+            id="bitrate_default"
+            type="radio"
+            name="bitrate"
+            checked={!state.videoSettings.bitrate.on}
+            onChange={e =>
+              handleBitrateChange({
+                on: false,
+              })
+            }
+          />
+          <label className={styles.label} htmlFor="bitrate_default">
+            default
+          </label>
+        </div>
+        <div>
+          <input
+            id="custom_bitrate"
+            type="radio"
+            name="bitrate"
+            checked={state.videoSettings.bitrate.on}
+            onChange={e =>
+              handleBitrateChange({
+                on: true,
+              })
+            }
+          />
+          <label className={styles.label} htmlFor="custom_bitrate">
+            custom
+          </label>
+          <input
+            type="text"
+            placeholder="100K"
+            value={state.videoSettings.bitrate.value}
+            onChange={e =>
+              handleBitrateChange({
+                value: e.target.value,
+              })
+            }
+          />
+        </div>
+      </form>
+      {/* pass */}
+      {/* <form className={styles.group}>
+        <div className={styles.label}>Pass:</div>
+        <div>
+          <input
+            id="pass_one"
+            type="radio"
+            name="pass"
+            checked={state.videoSettings.pass === 1}
+            onChange={e => handlePassChange(1)}
+          />
+          <label className={styles.label} htmlFor="pass_one">
+            One
+          </label>
+        </div>
+        <div>
+          <input
+            id="pass_two"
+            type="radio"
+            name="pass"
+            checked={state.videoSettings.pass === 2}
+            onChange={e => handlePassChange(2)}
+          />
+          <label className={styles.label} htmlFor="pass_two">
+            Two
+          </label>
+        </div>
+      </form> */}
     </div>
   )
 }

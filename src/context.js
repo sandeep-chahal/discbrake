@@ -21,8 +21,21 @@ const INITIAL_STATE = {
       w: 16,
       h: 9,
     },
+    bitrate: {
+      on: false,
+      value: "100K",
+    },
   },
-  audioSettings: {},
+  pass: 1,
+  audioSettings: {
+    on: true,
+    codec: "default",
+    speed: 1,
+    bitrate: {
+      on: false,
+      value: "100K",
+    },
+  },
   compressedVideos: null,
   progress: null,
   log: null,
@@ -106,6 +119,10 @@ const reducer = (state = INITIAL_STATE, action) => {
         activeTab: action.payload.tab,
       }
     case "VIDEO_SETTINGS":
+      console.log({
+        ...state.videoSettings,
+        ...action.payload.settings,
+      })
       return {
         ...state,
         videoSettings: {

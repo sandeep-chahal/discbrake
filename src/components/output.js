@@ -29,8 +29,9 @@ const Output = () => {
         <h2>Compressed Videos</h2>
         <div className={styles.videos}>
           {state.compressedVideos &&
-            state.compressedVideos.map(video => (
+            state.compressedVideos.map((video, i) => (
               <CompressedVideo
+                key={i}
                 name={video.name}
                 blob={video.blob}
                 handlePlayPreview={handlePlayPreview}

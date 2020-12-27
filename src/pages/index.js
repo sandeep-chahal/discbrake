@@ -7,6 +7,7 @@ import AddVideo from "../components/addVideo"
 import Tabs from "../components/tabs"
 import VideoBox from "../components/videoBox"
 import VideoSettings from "../components/videoSettings"
+import AudioSettings from "../components/audioSettings"
 import {
   useStore,
   changeTab,
@@ -14,7 +15,7 @@ import {
   addLog,
   alterProgress,
 } from "../context"
-import { toFFMPEGCmd } from "../utils"
+import { convertAudioSettings, convertVideoSettings } from "../utils"
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg"
 import Output from "../components/output"
 import Preview from "../components/preview"
@@ -41,8 +42,9 @@ export default function Home() {
       if (!ffmpeg.isLoaded()) return alert("ffmpeg not loaded yet")
       dispatch(changeTab("output"))
       const format = state.videoSettings.format
-      const cmd = toFFMPEGCmd(state.videoSettings)
-
+      const cmds1 = convertVideoSettings(state.videoSettings)
+      const cmds2 = convertAudioSettings(state.audioSettings)
+      const cmd = [...cmds1, ...cmds2]
       console.log(cmd)
       for (let i = 0; i < state.videos.length; i++) {
         const video = state.videos[i]
@@ -51,12 +53,13 @@ export default function Home() {
         const data = ffmpeg.FS("readFile", `output.${format}`)
         const blob = new Blob([data.buffer], { type: `video/${format}` })
         ffmpeg.FS("unlink", `output.${format}`)
-        dispatch(
-          addCompressedVideo({
-            name: video.name.split(".").slice(0, -1).join(".") + "." + format,
-            blob,
-          })
-        )
+        if (blob.size)
+          dispatch(
+            addCompressedVideo({
+              name: video.name.split(".").slice(0, -1).join(".") + "." + format,
+              blob,
+            })
+          )
       }
     } catch (err) {
       alert(err.message)
@@ -83,6 +86,7 @@ export default function Home() {
         />
         <div className="settings">
           {state.activeTab === "video" && <VideoSettings />}
+          {state.activeTab === "audio" && <AudioSettings />}
           {state.activeTab === "output" && <Output />}
         </div>
       </SettingsWrapper>

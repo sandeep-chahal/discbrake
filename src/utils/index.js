@@ -1,4 +1,4 @@
-export const toFFMPEGCmd = settings => {
+export const convertVideoSettings = settings => {
   const cmd = []
 
   if ("codec" in settings && settings.codec != "default") {
@@ -17,10 +17,10 @@ export const toFFMPEGCmd = settings => {
     cmd.push("-crf")
     cmd.push(settings["crf"])
   }
-  // if ("tune" in settings && settings.tune !== "none") {
-  //   cmd.push("-tune")
-  //   cmd.push(settings["tune"])
-  // }
+  if ("bitrate" in settings && settings.bitrate.on) {
+    cmd.push("-b:v")
+    cmd.push(settings["bitrate"].value)
+  }
   if ("resolution" in settings && settings.resolution.on) {
     cmd.push("-vf")
     cmd.push(
@@ -30,6 +30,25 @@ export const toFFMPEGCmd = settings => {
   if ("ar" in settings && settings.ar.on) {
     cmd.push("-aspect")
     cmd.push(`${settings["ar"].w}:${settings["ar"].h}`)
+  }
+
+  return cmd.map(c => String(c))
+}
+export const convertAudioSettings = settings => {
+  const cmd = []
+
+  if (!settings.on) {
+    cmd.push("-an")
+  } else {
+    if ("codec" in settings && settings.codec != "default") {
+      cmd.push("-acodec")
+      cmd.push(settings["codec"])
+    }
+
+    if ("bitrate" in settings && settings.bitrate.on) {
+      cmd.push("-b:a")
+      cmd.push(settings["bitrate"].value)
+    }
   }
 
   return cmd.map(c => String(c))
