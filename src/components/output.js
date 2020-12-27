@@ -1,12 +1,15 @@
 import React from "react"
 import styles from "../styles/output.module.scss"
-import { useStore, playPreview } from "../context"
+import { useStore, playPreview, deleteCompressed } from "../context"
 import CompressedVideo from "../components/compressedVideo"
 
 const Output = () => {
   const [state, dispatch] = useStore()
   const handlePlayPreview = preview => {
     dispatch(playPreview(preview))
+  }
+  const handleDelete = index => {
+    dispatch(deleteCompressed(index))
   }
   return (
     <div className={styles.output}>
@@ -35,6 +38,7 @@ const Output = () => {
                 name={video.name}
                 blob={video.blob}
                 handlePlayPreview={handlePlayPreview}
+                handleDelete={() => handleDelete(i)}
               />
             ))}
         </div>

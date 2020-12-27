@@ -14,7 +14,6 @@ const GlobalStyles = createGlobalStyle`
             "Helvetica Neue", sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        overflow: hidden;
         padding: 10px 40px;
         @media (max-width:768px){
             padding: 10px;
@@ -27,15 +26,15 @@ const GlobalStyles = createGlobalStyle`
         overflow-y: auto;
     }
 
-    .settings::-webkit-scrollbar {
+    *::-webkit-scrollbar {
         width: 10px;
     }
     
-    .settings::-webkit-scrollbar-track {
+    *::-webkit-scrollbar-track {
         box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     }
     
-    .settings::-webkit-scrollbar-thumb {
+    *::-webkit-scrollbar-thumb {
         background-color: #ccc;
     }
 `

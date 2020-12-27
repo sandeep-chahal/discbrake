@@ -5,6 +5,7 @@ import { useStore, importVideos } from "../context"
 const Wrapper = styled.div.attrs(() => ({ title: "Click to import videos" }))`
   width: 80px;
   height: 80px;
+  margin: 10px;
   background: ${({ theme }) => theme.colors.addVideo};
   display: flex;
   align-items: center;

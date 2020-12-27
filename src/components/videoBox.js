@@ -1,15 +1,9 @@
 import React from "react"
-import styled from "styled-components"
+import styles from "../styles/videoBox.module.scss"
 
-const Wrapper = styled.div`
-  width: 80px;
-  height: 80px;
-  margin-right: 20px;
-  outline: 2px solid ${({ theme }) => theme.colors.text};
-`
-const VideoBox = ({ video }) => {
+const VideoBox = ({ video, handlePlay, handleDelete }) => {
   return (
-    <Wrapper title={video.name}>
+    <div className={styles.videoBox} title={video.name}>
       <video
         controls={false}
         width="80px"
@@ -18,7 +12,25 @@ const VideoBox = ({ video }) => {
       >
         <source src={URL.createObjectURL(video)} />
       </video>
-    </Wrapper>
+      <div className={styles.bg}>
+        <img
+          src="/icons/icons8-play.svg"
+          width="32px"
+          width="32px"
+          height="32px"
+          title="Play"
+          onClick={handlePlay}
+        />
+        <img
+          src="/icons/icons8-delete-bin.svg"
+          width="32px"
+          width="32px"
+          height="32px"
+          title="Delete"
+          onClick={handleDelete}
+        />
+      </div>
+    </div>
   )
 }
 

@@ -105,6 +105,22 @@ export const playPreview = preview => {
     },
   }
 }
+export const deleteImported = index => {
+  return {
+    type: "DELETE_IMPORTED",
+    payload: {
+      index,
+    },
+  }
+}
+export const deleteCompressed = index => {
+  return {
+    type: "DELETE_COMPRESSED",
+    payload: {
+      index,
+    },
+  }
+}
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -160,6 +176,21 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         preview: action.payload.preview,
+      }
+    case "DELETE_IMPORTED":
+      console.log(state.videos.filter((_, i) => i !== action.payload.index))
+      return {
+        ...state,
+        videos: state.videos
+          ? state.videos.filter((_, i) => i !== action.payload.index)
+          : [],
+      }
+    case "DELETE_COMPRESSED":
+      return {
+        ...state,
+        compressedVideos: state.compressedVideos
+          ? state.compressedVideos.filter((_, i) => i !== action.payload.index)
+          : [],
       }
     default:
       return state

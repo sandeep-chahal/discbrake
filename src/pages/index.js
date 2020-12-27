@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { ThemeProvider } from "styled-components"
 import GlobalStyles from "../styled/globalStyles"
 import theme from "../styled/theme"
@@ -14,6 +14,8 @@ import {
   addCompressedVideo,
   addLog,
   alterProgress,
+  playPreview,
+  deleteImported,
 } from "../context"
 import { convertAudioSettings, convertVideoSettings } from "../utils"
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg"
@@ -67,13 +69,28 @@ export default function Home() {
     }
   }
 
+  const handlePlay = (name, blob) => {
+    dispatch(playPreview({ name, blob }))
+  }
+  const handleDelete = index => {
+    console.log("deleting:", index)
+    dispatch(deleteImported(index))
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <h1>DiscBrake</h1>
       <VideosWrapper>
         {state.videos &&
-          state.videos.map((video, i) => <VideoBox key={i} video={video} />)}
+          state.videos.map((video, i) => (
+            <VideoBox
+              key={i + video.name}
+              video={video}
+              handlePlay={() => handlePlay(video.name, video)}
+              handleDelete={() => handleDelete(i)}
+            />
+          ))}
         <AddVideo />
       </VideosWrapper>
       <SettingsWrapper>

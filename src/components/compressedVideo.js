@@ -2,7 +2,7 @@ import React from "react"
 import { handleDownload } from "../utils"
 import styles from "../styles/compressedVideo.module.scss"
 
-const VideoBox = ({ blob, name, handlePlayPreview }) => {
+const VideoBox = ({ blob, name, handlePlayPreview, handleDelete }) => {
   return (
     <div className={styles.compressedVideo} title={name}>
       <h3>{name}</h3>
@@ -25,6 +25,13 @@ const VideoBox = ({ blob, name, handlePlayPreview }) => {
           onClick={() => handleDownload(name, blob)}
           title="Save as"
           src="/icons/icons8-save.svg"
+          width="20px"
+          height="20px"
+        />
+        <img
+          onClick={handleDelete}
+          title="Delete"
+          src="/icons/icons8-delete-bin.svg"
           width="20px"
           height="20px"
         />
