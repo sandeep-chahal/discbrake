@@ -10,11 +10,8 @@ const Preview = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.preview}>
-        <div className={styles.header}>
-          <h3>{state.preview.name}</h3>
           <div className={styles.close} onClick={closePreview}>
-            X
-          </div>
+            Close
         </div>
         <video controls>
           <source src={URL.createObjectURL(state.preview.blob)}></source>

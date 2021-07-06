@@ -36,7 +36,7 @@ const AddVideo = () => {
   const input = useRef(null)
 
   const filterFiles = files => {
-    const videos = files
+    const videos = Array.from(files)
       .filter(file => file.type.includes("video/"))
       .map(video => {
         video.key = uuidv4()
